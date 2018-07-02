@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.apache.commons.io.FileUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -33,6 +34,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.io.File;
 
 @Controller
 @SpringBootApplication
@@ -46,6 +48,7 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
+      FileUtils.touch(new File("/tmp/app-initialized"));
   }
 
   @RequestMapping("/")
