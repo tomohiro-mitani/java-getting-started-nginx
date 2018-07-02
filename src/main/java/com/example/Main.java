@@ -74,6 +74,18 @@ public class Main {
     }
   }
 
+  @RequestMapping("/hello")
+  String hello(Map<String, Object> model) {
+      RelativisticModel.select();
+      String energy = System.getenv().get("ENERGY");
+      if (energy == null) {
+         energy = "12 GeV";
+      }
+      Amount<Mass> m = Amount.valueOf(energy).to(KILOGRAM);
+      model.put("science", "E=mc^2: " + energy + " = "  + m.toString());
+      return "hello";
+  }
+
   @Bean
   public DataSource dataSource() throws SQLException {
     if (dbUrl == null || dbUrl.isEmpty()) {
